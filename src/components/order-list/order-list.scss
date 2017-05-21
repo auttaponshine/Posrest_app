@@ -1,0 +1,29 @@
+order-list {
+  .order-container {
+    position: fixed;
+    width: 25%;
+    top: 100px;
+    bottom: 0;
+    border: 1px solid #ccc;
+    padding: 4px;
+    overflow-y: auto;
+    height: 600px;
+
+  }
+
+  .right-top-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: calc(100% - 130px);
+    overflow-y: auto;
+  }
+  
+  .right-bottom-container {
+    position: absolute!important;
+    bottom: 0px;
+    height: 110px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
