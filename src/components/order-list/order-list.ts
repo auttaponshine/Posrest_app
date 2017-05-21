@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 /**
  * Generated class for the OrderListComponent component.
@@ -14,15 +14,19 @@ export class OrderListComponent {
 
   text: string;
   @Input() options;
-
+  @Output() onReset = new EventEmitter();
+  orderList: any;
   constructor() {
-
+    this.initializeItems();
   }
-
+  initializeItems() {
+    this.orderList = this.options;
+  }
   editItem(item) {
     console.log(item);
   }
-  resetItem() {
-    this.options=[];
+
+  resetReset() {
+    this.onReset.emit(true);
   }
 }

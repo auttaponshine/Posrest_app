@@ -17,6 +17,12 @@ order-list {
     width: 100%;
     height: calc(100% - 130px);
     overflow-y: auto;
+    .order-list{
+      cursor: pointer;
+      &:hover{
+        background-color:color($colors, primary); 
+      }
+    }
   }
   
   .right-bottom-container {

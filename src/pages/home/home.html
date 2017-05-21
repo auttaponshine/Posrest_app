@@ -49,7 +49,7 @@
       <!--END LEFT CONTENT-->
       <!--BEGIN RIGHT SIDEBAR-->
       <ion-col col-3 class="right-container">
-        <order-list [options]="orderList"></order-list>
+        <order-list [options]="orderList" (onReset)="resetOrder()"></order-list>
       </ion-col>
       <!--END RIGHT SIDEBAR-->
     </ion-row>
