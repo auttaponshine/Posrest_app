@@ -7,12 +7,52 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content padding class="background-content">
+  <ion-grid>
+    <ion-row>
+      <!--BEGIN LEFT CONTENT-->
+      <ion-col col-9>
+        <ion-row>
+          <!--BEGIN SEARCH BAR-->
+          <ion-col col-6>
+            <ion-searchbar (ionInput)="getItems($event)" class="search-bar"></ion-searchbar>
+          </ion-col>
+          <!--END SEARCH BAR-->
+          <!--BEGIN SELECT OPTIONS-->
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>Select</ion-label>
+              <ion-select [(ngModel)]="tests">
+                <ion-option value="f">1231</ion-option>
+                <ion-option value="m">4565745</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <!--END SELECT OPTIONS-->
+        </ion-row>
+        <div class="left-container">
+          <ion-row>
+            <!--BEGIN ORDER CARDS-->
+            <ion-col col-3 *ngFor="let item of items" padding>
+              <div class="card-container" (click)="selectItem(item)">
+                <img src="http://wowslider.com/sliders/demo-18/data1/images/hongkong1081704.jpg">
+                <ion-card-content>
+                  <p>Name: {{item.name}}</p>
+                </ion-card-content>
+              </div>
+            </ion-col>
+            <!--END ORDER CARDS-->
+          </ion-row>
+        </div>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+      </ion-col>
+      <!--END LEFT CONTENT-->
+      <!--BEGIN RIGHT SIDEBAR-->
+      <ion-col col-3 class="right-container">
+        <order-list [options]="orderList"></order-list>
+      </ion-col>
+      <!--END RIGHT SIDEBAR-->
+    </ion-row>
+  </ion-grid>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
