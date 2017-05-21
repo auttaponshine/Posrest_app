@@ -16,8 +16,13 @@ export class OrderListComponent {
   @Input() options;
 
   constructor() {
-    console.log('Hello OrderListComponent Component');
-    this.text = 'Hello World';
+
   }
 
+  editItem(item) {
+    console.log(item);
+  }
+  resetItem() {
+    this.options=[];
+  }
 }
