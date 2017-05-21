@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { cloneDeep } from 'lodash';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class HomePage {
   searchQuery: string = '';
   items: any;
   orderList: any = [];
-  orderDetails: any;
+
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
     this.initializeItems();
 
@@ -25,9 +26,6 @@ export class HomePage {
     { name: "Coffee5", price: 100 }
     ];
     this.orderList = [];
-    this.orderDetails = {
-      amount: 1
-    }
   }
 
   getItems(ev: any) {
@@ -45,34 +43,37 @@ export class HomePage {
     }
   }
 
-  selectItem(item) {
-    this.showAmount(item);
-    item.orderDetails = {};
-    item.orderDetails.amount = 1;
-    item.orderDetails.grade = 'normal';
-    item.orderDetails.sweet = 'normal';
+  selectItem(item, isEdit?) {
+    if(!isEdit) {
+      item.orderDetails = {};
+      item.orderDetails.amount = 1;
+      item.orderDetails.grade = 'normal';
+      item.orderDetails.sweet = 'normal';
+    }
+    this.showAmount(item, isEdit);
   }
 
-  showAmount(item) {
+  showAmount(item, isEdit?) {
+
     let alert = this.alertCtrl.create();
     alert.setTitle('Amount');
     alert.addInput({
       type: 'number',
       name: 'amount',
-      value: this.orderDetails.amount,
+      value: item.orderDetails.amount,
     });
     alert.addButton('Cancel');
     alert.addButton({
       text: 'Next',
       handler: data => {
         item.orderDetails.amount = data.amount;
-        this.showGrade(item);
+        this.showGrade(item, isEdit);
       }
     });
     alert.present();
   }
 
-  showGrade(item) {
+  showGrade(item, isEdit?) {
     let alert = this.alertCtrl.create();
     alert.setTitle('Grade');
     alert.addInput({
@@ -96,20 +97,20 @@ export class HomePage {
     alert.addButton({
       text: 'Back',
       handler: data => {
-        this.showAmount(item);
+        this.showAmount(item, isEdit);
       }
     });
     alert.addButton({
       text: 'Next',
       handler: data => {
         item.orderDetails.grade = data;
-        this.showSweet(item);
+        this.showSweet(item, isEdit);
       }
     });
     alert.present();
   }
 
-  showSweet(item) {
+  showSweet(item, isEdit?) {
     let alert = this.alertCtrl.create();
     alert.setTitle('Sweet');
     alert.addInput({
@@ -149,7 +150,7 @@ export class HomePage {
       text: 'OK',
       handler: data => {
         item.orderDetails.sweet = data;
-        this.orderList.push(item);
+        if (!isEdit) this.orderList.push(item);
       }
     });
     alert.present();
@@ -157,6 +158,10 @@ export class HomePage {
 
   resetOrder() {
     this.orderList = [];
+  }
+
+  editItem(item) {
+    this.selectItem(item, true);
   }
 
 }

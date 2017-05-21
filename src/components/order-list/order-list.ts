@@ -10,23 +10,20 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
   selector: 'order-list',
   templateUrl: 'order-list.html'
 })
-export class OrderListComponent {
+export class OrderListComponent  {
 
   text: string;
   @Input() options;
   @Output() onReset = new EventEmitter();
-  orderList: any;
+  @Output() onEdit = new EventEmitter();
   constructor() {
-    this.initializeItems();
-  }
-  initializeItems() {
-    this.orderList = this.options;
-  }
-  editItem(item) {
-    console.log(item);
   }
 
-  resetReset() {
+  editItem(item) {
+    this.onEdit.emit(item);
+  }
+
+  resetOrder() {
     this.onReset.emit(true);
   }
 }
