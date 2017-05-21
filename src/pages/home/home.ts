@@ -10,7 +10,7 @@ import { AlertController } from 'ionic-angular';
 export class HomePage {
   searchQuery: string = '';
   items: any;
-  orderList: any;
+  orderList: any = [];
   orderDetails: any;
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
     this.initializeItems();
@@ -150,11 +150,13 @@ export class HomePage {
       handler: data => {
         item.orderDetails.sweet = data;
         this.orderList.push(item);
-        console.log(this.orderList);
-
       }
     });
     alert.present();
+  }
+
+  resetOrder() {
+    this.orderList = [];
   }
 
 }
