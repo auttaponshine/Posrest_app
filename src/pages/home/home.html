@@ -34,7 +34,7 @@
           <ion-row>
             <!--BEGIN ORDER CARDS-->
             <ion-col col-3 *ngFor="let item of items" >
-              <div class="card-container" (click)="selectItem(item)">
+              <div class="card-container" (click)="selectItem(item, false)">
                 <img src="http://wowslider.com/sliders/demo-18/data1/images/hongkong1081704.jpg">
                 <ion-card-content>
                   <p>Name: {{item.name}}</p>
@@ -49,7 +49,7 @@
       <!--END LEFT CONTENT-->
       <!--BEGIN RIGHT SIDEBAR-->
       <ion-col col-3 class="right-container">
-        <order-list [options]="orderList" (onReset)="resetOrder()"></order-list>
+        <order-list [options]="orderList" (onReset)="resetOrder()" (onEdit)="editItem($event)"></order-list>
       </ion-col>
       <!--END RIGHT SIDEBAR-->
     </ion-row>
