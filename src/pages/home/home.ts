@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
-import { cloneDeep } from 'lodash';
+import { ModalController, AlertController, NavController } from 'ionic-angular';
+import { ModalPage } from '../modal/modal';
 
 
 @Component({
@@ -12,8 +11,13 @@ export class HomePage {
   searchQuery: string = '';
   items: any;
   orderList: any = [];
-
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  queueId: any;
+  productTypes: any;
+  constructor(
+    public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController
+  ) {
     this.initializeItems();
 
   }
@@ -26,7 +30,26 @@ export class HomePage {
     { name: "Coffee5", price: 100 }
     ];
     this.orderList = [];
+    this.queueId = 1;
   }
+
+  presentModal(item, isEdit?) {
+    let modal = this.modalCtrl.create(ModalPage, { item: item });
+
+    modal.onDidDismiss(data => {
+      if (!isEdit) {
+        data.id = this.queueId;
+        this.orderList.push(data);
+        this.queueId++;
+        console.log(this.orderList);
+      } else {
+        console.log(item);
+      }
+    });
+
+    modal.present();
+  }
+
 
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -43,125 +66,12 @@ export class HomePage {
     }
   }
 
-  selectItem(item, isEdit?) {
-    if(!isEdit) {
-      item.orderDetails = {};
-      item.orderDetails.amount = 1;
-      item.orderDetails.grade = 'normal';
-      item.orderDetails.sweet = 'normal';
-    }
-    this.showAmount(item, isEdit);
-  }
-
-  showAmount(item, isEdit?) {
-
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Amount');
-    alert.addInput({
-      type: 'number',
-      name: 'amount',
-      value: item.orderDetails.amount,
-    });
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'Next',
-      handler: data => {
-        item.orderDetails.amount = data.amount;
-        this.showGrade(item, isEdit);
-      }
-    });
-    alert.present();
-  }
-
-  showGrade(item, isEdit?) {
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Grade');
-    alert.addInput({
-      type: 'radio',
-      label: 'Normal',
-      value: 'normal',
-      checked: 'normal' === item.orderDetails.grade
-    });
-    alert.addInput({
-      type: 'radio',
-      label: 'High',
-      value: 'high',
-      checked: 'high' === item.orderDetails.grade
-    });
-    alert.addInput({
-      type: 'radio',
-      label: 'Premium',
-      value: 'premium',
-      checked: 'premium' === item.orderDetails.grade
-    });
-    alert.addButton({
-      text: 'Back',
-      handler: data => {
-        this.showAmount(item, isEdit);
-      }
-    });
-    alert.addButton({
-      text: 'Next',
-      handler: data => {
-        item.orderDetails.grade = data;
-        this.showSweet(item, isEdit);
-      }
-    });
-    alert.present();
-  }
-
-  showSweet(item, isEdit?) {
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Sweet');
-    alert.addInput({
-      type: 'radio',
-      label: 'No',
-      value: 'no',
-      checked: 'no' === item.orderDetails.sweet
-    });
-    alert.addInput({
-      type: 'radio',
-      label: 'Low',
-      value: 'low',
-      checked: 'low' === item.orderDetails.sweet
-
-    });
-    alert.addInput({
-      type: 'radio',
-      label: 'Normal',
-      value: 'normal',
-      checked: 'normal' === item.orderDetails.sweet
-
-    });
-    alert.addInput({
-      type: 'radio',
-      label: 'High',
-      value: 'high',
-      checked: 'high' === item.orderDetails.sweet
-
-    });
-    alert.addButton({
-      text: 'Back',
-      handler: data => {
-        this.showGrade(item);
-      }
-    });
-    alert.addButton({
-      text: 'OK',
-      handler: data => {
-        item.orderDetails.sweet = data;
-        if (!isEdit) this.orderList.push(item);
-      }
-    });
-    alert.present();
-  }
-
   resetOrder() {
     this.orderList = [];
   }
 
   editItem(item) {
-    this.selectItem(item, true);
+    this.presentModal(item, true);
   }
 
 }
