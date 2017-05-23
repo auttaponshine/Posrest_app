@@ -1,0 +1,65 @@
+<!--
+  Generated template for the ModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Order Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form>
+
+    <!--Begin Grade Select-->
+    <div class="form-group">
+      <div class="radio-group" >
+      <div class="radio-title">Grade: </div>
+        <input type="radio" id="normal" name="grade" value="normal" [(ngModel)]="orderDetails.grade" [checked]="orderDetails.grade === orderDetails.grade">
+        <label for="normal">Normal</label>
+        <input type="radio" id="high" name="grade" value="high" [(ngModel)]="orderDetails.grade" [checked]="orderDetails.grade === orderDetails.grade"
+        />
+        <label for="high">High</label>
+        <input type="radio" id="premium" name="grade" value="premium" [(ngModel)]="orderDetails.grade" [checked]="orderDetails.grade === orderDetails.grade"
+        />
+        <label for="premium">Premium</label>
+      </div>
+    </div>
+    <!--End Grade Select-->
+    <!--Begin Sweet Select-->
+    <div class="form-group">
+      <div class="radio-group">
+      <div class="radio-title">Sweet: </div>
+        <input type="radio" id="sweet_no" name="sweet" value="no" [(ngModel)]="orderDetails.sweet" [checked]="orderDetails.sweet === orderDetails.sweet">
+        <label for="sweet_no">No</label>
+        <input type="radio" id="sweet_low" name="sweet" value="low" [(ngModel)]="orderDetails.sweet" [checked]="orderDetails.sweet === orderDetails.sweet"
+        />
+        <label for="sweet_low">Low</label>
+        <input type="radio" id="sweet_normal" name="sweet" value="normal" [(ngModel)]="orderDetails.sweet" [checked]="orderDetails.sweet === orderDetails.sweet"
+        />
+        <label for="sweet_normal">Normal</label>
+        <input type="radio" id="sweet_high" name="sweet" value="high" [(ngModel)]="orderDetails.sweet" [checked]="orderDetails.sweet === orderDetails.sweet"
+        />
+        <label for="sweet_high">High</label>
+      </div>
+    </div>
+    <!--End Sweet Select-->
+    <!--Begin Amount Select-->
+    <div class="form-group">
+      <ion-item>
+        <ion-label>Amount: </ion-label>
+        <ion-input type="number" [value]="orderDetails.amount" name="amount" [(ngModel)]="orderDetails.amount" required></ion-input>
+      </ion-item>
+    </div>
+    <!--End Amount Select-->
+  </form>
+</ion-content>
+<ion-footer text-right no-border>
+  <button ion-button color="success" (click)="submitModal()">Confirm</button>
+  <button ion-button color="light" (click)="closeModal()">Cancel</button>
+</ion-footer>

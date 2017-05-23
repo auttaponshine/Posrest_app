@@ -22,7 +22,7 @@
           <ion-col col-6>
             <ion-item>
               <ion-label>Product Types</ion-label>
-              <ion-select [(ngModel)]="productTypes">
+              <ion-select >
                 <ion-option value="brewing">Brewing</ion-option>
                 <ion-option value="nonbrewing">Non-brewing</ion-option>
               </ion-select>
@@ -34,7 +34,7 @@
           <ion-row>
             <!--BEGIN ORDER CARDS-->
             <ion-col col-3 *ngFor="let item of items" >
-              <div class="card-container" (click)="selectItem(item, false)">
+              <div class="card-container" (click)="presentModal(item)">
                 <img src="http://wowslider.com/sliders/demo-18/data1/images/hongkong1081704.jpg">
                 <ion-card-content>
                   <p>Name: {{item.name}}</p>
