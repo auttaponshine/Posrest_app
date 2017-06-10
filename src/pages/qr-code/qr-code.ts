@@ -16,7 +16,7 @@ import { ScanResultPage } from '../scan-result/scan-result';
 })
 export class QrCodePage {
 
-public scannedText: string;
+  public scannedText: string;
   public buttonText: string;
   public loading: boolean;
   private eventId: number;
@@ -39,8 +39,14 @@ public scannedText: string;
   public scanQR() {
     this.buttonText = "Loading..";
     this.loading = true;
+    let options = {
+      "preferFrontCamera": true,
+      "showFlipCameraButton": true,
+      "prompt": "Place a barcode inside the scan area",
+      "torchOn": true
+    };
 
-    this._barcodeScanner.scan().then((barcodeData) => {
+    this._barcodeScanner.scan(options).then((barcodeData) => {
       if (barcodeData.cancelled) {
         console.log("User cancelled the action!");
         this.buttonText = "Scan";
@@ -61,7 +67,7 @@ public scannedText: string;
     });
   }
   public encodeData() {
-     this._barcodeScanner.encode(this._barcodeScanner.Encode.TEXT_TYPE, 'qq')
-  } 
+    this._barcodeScanner.encode(this._barcodeScanner.Encode.TEXT_TYPE, 'qq')
+  }
 
 }
