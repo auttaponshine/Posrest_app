@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { ScanResultPage } from '../pages/scan-result/scan-result';
+import { ScanResultPage } from '../scan-result/scan-result';
 
 /**
  * Generated class for the QrCodePage page.
@@ -59,9 +59,6 @@ public scannedText: string;
     this._nav.push(ScanResultPage, {
       scannedText: barcodeData.text
     });
-  }
-
-  private checkPass(data) {
   }
 
 
