@@ -60,6 +60,8 @@ public scannedText: string;
       scannedText: barcodeData.text
     });
   }
-
+  public encodeData() {
+     this._barcodeScanner.encode(this._barcodeScanner.Encode.TEXT_TYPE, 'qq')
+  } 
 
 }
