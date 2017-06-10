@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -9,7 +10,9 @@ import { ModalPage } from '../pages/modal/modal';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { OrderListComponent } from '../components/order-list/order-list';
-import { OrderlistTablePage } from '../pages/orderlist-table/orderlist-table'
+import { OrderlistTablePage } from '../pages/orderlist-table/orderlist-table';
+import { QrCodePage } from '../pages/qr-code/qr-code';
+import { ScanResultPage } from '../pages/scan-result/scan-result';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { OrderlistTablePage } from '../pages/orderlist-table/orderlist-table'
     ListPage,
     ModalPage,
     OrderListComponent,
-    OrderlistTablePage
+    OrderlistTablePage,
+    QrCodePage,
+    ScanResultPage
   ],
   imports: [
     BrowserModule,
@@ -30,11 +35,14 @@ import { OrderlistTablePage } from '../pages/orderlist-table/orderlist-table'
     HomePage,
     ListPage,
     ModalPage,
-    OrderlistTablePage
+    OrderlistTablePage,
+    QrCodePage,
+    ScanResultPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

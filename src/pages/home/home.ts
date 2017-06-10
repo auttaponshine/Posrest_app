@@ -41,6 +41,7 @@ export class HomePage {
         if (!_.isEmpty(data)) {
           let tempProduct = _.clone(data);
           tempProduct.id = this.queueId;
+          
           this.orderList.push(tempProduct);
           this.queueId++;
           console.log(this.orderList);

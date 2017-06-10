@@ -5,7 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { OrderlistTablePage } from '../pages/orderlist-table/orderlist-table'
+import { OrderlistTablePage } from '../pages/orderlist-table/orderlist-table';
+import { QrCodePage } from '../pages/qr-code/qr-code';
+import { ScanResultPage } from '../pages/scan-result/scan-result';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +26,9 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'OrderListTable', component: OrderlistTablePage }
+      { title: 'OrderListTable', component: OrderlistTablePage },
+      { title: 'QR code', component: QrCodePage},
+      { title: 'Scan result', component: ScanResultPage }
     ];
 
   }
