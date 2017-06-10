@@ -9,7 +9,7 @@ import { ModalPage } from '../pages/modal/modal';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { OrderListComponent } from '../components/order-list/order-list';
-
+import { OrderlistTablePage } from '../pages/orderlist-table/orderlist-table'
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { OrderListComponent } from '../components/order-list/order-list';
     ListPage,
     ModalPage,
     OrderListComponent,
+    OrderlistTablePage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,8 @@ import { OrderListComponent } from '../components/order-list/order-list';
     MyApp,
     HomePage,
     ListPage,
-    ModalPage
+    ModalPage,
+    OrderlistTablePage
   ],
   providers: [
     StatusBar,

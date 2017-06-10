@@ -42,9 +42,10 @@ export class ModalPage {
   }
 
   submitModal() {
-    let item = this.selectedItem;
-    item.orderDetails = this.orderDetails;
-    
+    let item = {};
+    item = this.selectedItem;
+    item['orderDetails'] = this.orderDetails;
+
     this.viewCtrl.dismiss(item);
   }
 

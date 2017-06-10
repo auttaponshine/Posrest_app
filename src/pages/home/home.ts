@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, AlertController, NavController } from 'ionic-angular';
 import { ModalPage } from '../modal/modal';
-
+import * as _ from "lodash";
 
 @Component({
   selector: 'page-home',
@@ -38,10 +38,14 @@ export class HomePage {
 
     modal.onDidDismiss(data => {
       if (!isEdit) {
-        data.id = this.queueId;
-        this.orderList.push(data);
-        this.queueId++;
-        console.log(this.orderList);
+        if (!_.isEmpty(data)) {
+          let tempProduct = _.clone(data);
+          tempProduct.id = this.queueId;
+          this.orderList.push(tempProduct);
+          this.queueId++;
+          console.log(this.orderList);
+        }
+
       } else {
         console.log(item);
       }
